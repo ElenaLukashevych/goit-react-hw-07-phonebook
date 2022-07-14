@@ -4,7 +4,7 @@ import { useAddContactsMutation, useGetContactsQuery } from 'redux/contactsOpera
 
 function ContactForm() {
 const [name, setName] = useState('');
-const [number, setNumber] = useState('');
+const [phone, setPhone] = useState('');
 const [addContact] = useAddContactsMutation();
 const { data } = useGetContactsQuery();
 
@@ -16,7 +16,7 @@ const { data } = useGetContactsQuery();
         break;
 
       case 'number':
-        setNumber(value);
+        setPhone(value);
         break;
 
       default:
@@ -31,13 +31,13 @@ const { data } = useGetContactsQuery();
             contact => contact.name.toLowerCase() === name.toLowerCase()
           )) {
             return alert(`${name} is already in contacts`);
-          } addContact({ name, number });
+          } addContact({ name, phone });
      reset();
     }
     
    const reset = () => {
      setName('');
-     setNumber('')
+     setPhone('')
   }
   
       return (
@@ -65,7 +65,7 @@ const { data } = useGetContactsQuery();
               className={s.input}
               type="tel"
               name="number"
-              value={number}
+              value={phone}
               onChange={handleInputChange}
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
